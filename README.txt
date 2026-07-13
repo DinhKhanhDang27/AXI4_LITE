@@ -1,37 +1,59 @@
-Ngày 1:
-- Đọc protocol
-- Vẽ 5 channels
-- Vẽ timing write/read
-- Làm slide 2–5
 
-Ngày 2:
-- Code AXI-Lite slave
-- Tạo register map
-- Write/read LED_REG chạy được
+rtl/
+ ├── axi4lite_slave.sv
+ ├── axi_register_bank.sv
+ └── alu_core.sv
 
-Ngày 3:
-- Code testbench
-- Viết task axi_write, axi_read
-- Chạy directed test
+tb/
+ ├── axi4lite_if.sv
+ ├── axi_transaction.sv
+ ├── axi_driver.sv
+ ├── axi_monitor.sv
+ ├── axi_scoreboard.sv
+ ├── axi_assertions.sv
+ ├── axi_coverage.sv
+ └── tb_top.sv
 
-Ngày 4:
-- Thêm assertion
-- Test payload stable, reset, response
-- Cố tình tạo bug rồi chứng minh assertion bắt được
+software/
+ └── main.c
 
-Ngày 5:
-- Random delay VALID/READY
-- Test AW trước W, W trước AW
-- Thêm WSTRB, invalid address, coverage
+quartus/
+ ├── platform_designer_system.qsys
+ └── top.sv
 
-Ngày 6:
-- Làm top module cho DE0-Nano
-- Map switch/button/LED
-- Compile Quartus
-- Quay demo hoặc chụp waveform/demo board
+docs/
+ ├── specification.md
+ ├── verification_plan.md
+ ├── register_map.md
+ └── test_report.md
 
-Ngày 7:
-- Hoàn thiện slide
-- Chuẩn bị Q&A
-- Tập nói 7–10 phút
-- Chuẩn bị backup: nếu FPGA lỗi thì trình bày simulation waveform
+
+
+
+
+                          +----------------------+
+                         |      Nios II CPU     |
+                         | Avalon-MM Masters    |
+                         +----------+-----------+
+                                    |
+                     Platform Designer Interconnect
+              +---------------------+---------------------+
+              |                     |                     |
+              v                     v                     v
+     +----------------+    +----------------+    +------------------+
+     | On-Chip Memory |    |   JTAG UART    |    | Avalon/AXI Bridge|
+     | Program + Data |    | printf console |    | or Interconnect  |
+     +----------------+    +----------------+    +---------+--------+
+                                                          |
+                                                          | AXI4-Lite
+                                                          v
+                                                 +------------------+
+                                                 | AXI4-Lite Slave  |
+                                                 | Register Bank    |
+                                                 +---------+--------+
+                                                           |
+                                                           v
+                                                 +------------------+
+                                                 | Custom HW Core   |
+                                                 | ALU / Counter    |
+                                                 +------------------+

@@ -1,0 +1,101 @@
+Flow chương trình ví dụ
+15 + 20
+
+Bước 1: CPU ghi toán hạng A
+Bước 2: Translator tạo giao dịch AXI4-Lite
+Bước 3: CPU ghi toán hạng B
+Bước 4: CPU chọn phép tính
+Bước 5: CPU gửi lệnh START
+Bước 6: ALU xử lý
+
+
+Flow CPU đọc STATUS
+Nios II Data Master
+        |
+        | Avalon-MM read
+        | address = BASE + REG_STATUS
+        v
+Platform Designer Interconnect
+        |
+        | Address decoding
+        v
+Avalon-MM ↔ AXI-Lite Translator
+        |
+        | AXI AR channel
+        v
+AXI4-Lite Slave
+        |
+        | Decode STATUS offset
+        v
+status_reg
+        |
+        | AXI RDATA
+        v
+Translator
+        |
+        | Avalon readdata
+        v
+Nios II
+
+
+Flow CPU đọc RESULT
+Nios II phát Avalon-MM read
+        ↓
+Interconnect decode địa chỉ
+        ↓
+Chuyển thành AXI AR transaction
+        ↓
+AXI slave decode RESULT
+        ↓
+RDATA = result_reg = 35
+        ↓
+Translator trả Avalon readdata
+        ↓
+Nios II nhận result = 35
+
+
+Flow in kết quả qua JTAG UART
+Nios II Data Master
+        |
+        | Avalon-MM write
+        v
+Platform Designer Interconnect
+        |
+        | Địa chỉ thuộc JTAG UART
+        v
+JTAG UART
+        |
+        | JTAG / USB-Blaster
+        v
+Nios II Terminal trên máy tính
+
+
+Flow hoàn chỉnh ngắn gọn
+1. Nios II lấy chương trình từ On-Chip Memory.
+
+2. Nios II ghi OPERAND_A qua Avalon-MM.
+
+3. Platform Designer chuyển Avalon-MM write thành
+   AXI4-Lite AW/W/B transaction.
+
+4. AXI slave ghi dữ liệu vào OPERAND_A register.
+
+5. CPU tiếp tục ghi OPERAND_B và OPCODE.
+
+6. CPU ghi CTRL.START.
+
+7. Register Bank phát start_pulse cho ALU.
+
+8. ALU tính toán và cập nhật busy, done, result.
+
+9. CPU đọc STATUS qua Avalon-MM.
+
+10. Platform Designer chuyển request thành
+    AXI4-Lite AR/R transaction.
+
+11. Khi DONE = 1, CPU đọc RESULT.
+
+12. CPU dùng JTAG UART để in kết quả ra Terminal.
+
+
+

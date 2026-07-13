@@ -1,32 +1,39 @@
-
-rtl/
- ├── axi4lite_slave.sv
- ├── axi_register_bank.sv
- └── alu_core.sv
-
-tb/
- ├── axi4lite_if.sv
- ├── axi_transaction.sv
- ├── axi_driver.sv
- ├── axi_monitor.sv
- ├── axi_scoreboard.sv
- ├── axi_assertions.sv
- ├── axi_coverage.sv
- └── tb_top.sv
-
-software/
- └── main.c
-
-quartus/
- ├── platform_designer_system.qsys
- └── top.sv
-
-docs/
- ├── specification.md
- ├── verification_plan.md
- ├── register_map.md
- └── test_report.md
-
+axi4lite-project/
+│
+├── rtl/
+│   ├── axi4lite_peripheral.sv     # Top-level của custom AXI IP
+│   ├── axi4lite_slave.sv          # Xử lý 5 AXI4-Lite channels
+│   ├── axi_register_bank.sv       # CTRL, STATUS, A, B, OPCODE, RESULT
+│   └── alu_core.sv                # Khối thực hiện phép toán
+│
+├── tb/
+│   ├── axi4lite_if.sv
+│   ├── axi_transaction.sv
+│   ├── axi_driver.sv
+│   ├── axi_monitor.sv
+│   ├── axi_scoreboard.sv
+│   ├── axi_assertions.sv
+│   ├── axi_coverage.sv
+│   └── tb_top.sv
+│
+├── software/
+│   └── main.c
+│
+├── quartus/
+│   ├── platform_designer_system.qsys
+│   ├── axi4lite_peripheral_hw.tcl  # Mô tả custom component
+│   ├── top.sv                      # Top-level toàn FPGA
+│   ├── project.qpf
+│   ├── project.qsf
+│   └── de0_nano.sdc                # Clock/timing constraints
+│
+├── docs/
+│   ├── specification.md
+│   ├── verification_plan.md
+│   ├── register_map.md
+│   └── test_report.md
+│
+└── README.md
 
 
 

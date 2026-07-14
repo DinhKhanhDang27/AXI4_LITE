@@ -1,7 +1,6 @@
 module alu_core #(
     parameter int DATA_WIDTH   = 32,
     parameter int OPCODE_WIDTH = 4,
-    parameter int SHIFT_WIDTH  = (DATA_WIDTH > 1) ? $clog2(DATA_WIDTH) : 1
 ) (
     input  logic                         clk,
     input  logic                         rst_n,

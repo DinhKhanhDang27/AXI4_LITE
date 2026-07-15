@@ -30,12 +30,14 @@ module axi4lite_slave #(
     output logic                    wr_en,
     output logic [ADDR_WIDTH-1:0]    wr_addr,
     output logic [DATA_WIDTH-1:0]    wr_data,
+    output logic [(DATA_WIDTH/8)-1:0] wr_strb,
     output logic [ADDR_WIDTH-1:0]    rd_addr,
     input  logic [DATA_WIDTH-1:0]    rd_data
 );
 
     logic [ADDR_WIDTH-1:0] awaddr_q, araddr_q;
     logic [DATA_WIDTH-1:0] wdata_q, rdata_q;
+    logic [(DATA_WIDTH/8)-1:0] wstrb_q;
     logic                  aw_v, w_v, bvalid_q, rvalid_q, read_pending;
 
     assign s_axi_awready = !aw_v;
@@ -60,9 +62,11 @@ module axi4lite_slave #(
             wr_en       <= 1'b0;
             wr_addr     <= '0;
             wr_data     <= '0;
+            wr_strb     <= '0;
             awaddr_q    <= '0;
             araddr_q    <= '0;
             wdata_q     <= '0;
+            wstrb_q      <= '0;
             rdata_q     <= '0;
         end else begin
             wr_en <= 1'b0;
@@ -74,6 +78,7 @@ module axi4lite_slave #(
 
             if (s_axi_wvalid && s_axi_wready) begin
                 wdata_q <= s_axi_wdata;
+                wstrb_q <= s_axi_wstrb;
                 w_v     <= 1'b1;
             end
 
@@ -81,6 +86,7 @@ module axi4lite_slave #(
                 wr_en    <= 1'b1;
                 wr_addr  <= awaddr_q;
                 wr_data  <= wdata_q;
+                wr_strb  <= wstrb_q;
                 aw_v     <= 1'b0;
                 w_v      <= 1'b0;
                 bvalid_q <= 1'b1;

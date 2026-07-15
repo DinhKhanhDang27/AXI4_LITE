@@ -1,8 +1,0 @@
-| Loại               | Đặc điểm chính                                                     | Ứng dụng                                      |
-| ------------------ | ------------------------------------------------------------------ | --------------------------------------------- |
-| **AXI3**           | Phiên bản cũ hơn của AXI                                           | SoC/IP cũ                                     |
-| **AXI4**           | Memory-mapped, hiệu năng cao, có burst                             | CPU ↔ DDR, DMA ↔ memory, high-speed IP        |
-| **AXI4-Lite**      | Memory-mapped nhưng đơn giản, không burst                          | Control/status registers, cấu hình peripheral |
-| **AXI4-Stream**    | Streaming data, không dùng địa chỉ                                 | Video, audio, DSP, Ethernet, ADC/DAC stream   |
-| **AXI5**           | Phiên bản mới hơn, thêm một số khả năng về performance/reliability | SoC hiện đại, IP mới                          |
-| **ACE / ACE-Lite** | Mở rộng từ AXI để hỗ trợ cache coherency                           | Multi-core CPU, hệ thống cần coherent memory  |

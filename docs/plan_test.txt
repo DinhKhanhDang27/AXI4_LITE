@@ -1,0 +1,6 @@
+1. test ALU
+2. test axi register Bank
+3. test axi slave 
+4. test wrapper
+5. test soc
+

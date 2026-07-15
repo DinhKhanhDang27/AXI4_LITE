@@ -8,6 +8,7 @@ module axi_register_bank #(
     input  logic                    wr_en,
     input  logic [ADDR_WIDTH-1:0]    wr_addr,
     input  logic [DATA_WIDTH-1:0]    wr_data,
+    input  logic [(DATA_WIDTH/8)-1:0] wr_strb,
 
     input  logic [ADDR_WIDTH-1:0]    rd_addr,
     output logic [DATA_WIDTH-1:0]    rd_data,
@@ -31,6 +32,26 @@ module axi_register_bank #(
 
     logic [DATA_WIDTH-1:0] result_reg;
     logic [2:0]            status_reg;
+    logic [DATA_WIDTH-1:0] opcode_word;
+
+    function automatic logic [DATA_WIDTH-1:0] apply_strb(
+        input logic [DATA_WIDTH-1:0] old_data,
+        input logic [DATA_WIDTH-1:0] new_data,
+        input logic [(DATA_WIDTH/8)-1:0] strb
+    );
+        logic [DATA_WIDTH-1:0] merged;
+
+        merged = old_data;
+        for (int i = 0; i < DATA_WIDTH/8; i++) begin
+            if (strb[i]) begin
+                merged[i*8 +: 8] = new_data[i*8 +: 8];
+            end
+        end
+
+        return merged;
+    endfunction
+
+    assign opcode_word = apply_strb({{DATA_WIDTH-4{1'b0}}, opcode}, wr_data, wr_strb);
 
     always_ff @(posedge clk or negedge rst_n) begin
         if (!rst_n) begin
@@ -46,14 +67,14 @@ module axi_register_bank #(
             if (wr_en) begin
                 unique case (wr_addr)
                     ADDR_CTRL: begin
-                        if (wr_data[0] && !status_reg[0]) begin
+                        if (wr_strb[0] && wr_data[0] && !status_reg[0]) begin
                             start_pulse <= 1'b1;
-                            status_reg   <= 3'b100;
+                            status_reg   <= 3'b001;
                         end
                     end
-                    ADDR_A:      operand_a <= wr_data;
-                    ADDR_B:      operand_b <= wr_data;
-                    ADDR_OPCODE: opcode    <= wr_data[3:0];
+                    ADDR_A:      operand_a <= apply_strb(operand_a, wr_data, wr_strb);
+                    ADDR_B:      operand_b <= apply_strb(operand_b, wr_data, wr_strb);
+                    ADDR_OPCODE: opcode    <= opcode_word[3:0];
                     default: ;
                 endcase
             end

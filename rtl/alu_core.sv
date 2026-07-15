@@ -1,6 +1,6 @@
 module alu_core #(
     parameter int DATA_WIDTH   = 32,
-    parameter int OPCODE_WIDTH = 4,
+    parameter int OPCODE_WIDTH = 4
 ) (
     input  logic                         clk,
     input  logic                         rst_n,

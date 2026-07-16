@@ -1,0 +1,16 @@
+# Quartus generated databases, reports, and temporary locks
+quartus/db/
+quartus/incremental_db/
+quartus/output_files/
+quartus/.qsys_edit/
+*.rdr.flock
+*.qws
+
+# Simulator/build scratch
+work/
+transcript
+vsim.wlf
+
+# OS/editor noise
+Thumbs.db
+.DS_Store

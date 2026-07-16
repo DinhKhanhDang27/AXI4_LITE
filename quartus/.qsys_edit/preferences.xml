@@ -14,7 +14,6 @@
    <frequency preferredWidth="344" />
   </columns>
  </clocktable>
- <library
-   expandedCategories="Library/Verification/Debug &amp; Performance,Library/Interface Protocols/Serial,Library/Verification,Library,Library/Bridges,Library/Bridges/Memory-Mapped,Project,Library/Interface Protocols" />
+ <library expandedCategories="Library,Project" />
  <window width="1382" height="744" x="-8" y="-8" />
 </preferences>

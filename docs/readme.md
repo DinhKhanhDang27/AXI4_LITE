@@ -1,160 +1,156 @@
-# Với RTL hiện tại, để hướng tới **100% functional coverage** thì nên chia testcase theo 5 block: `alu_core`, `axi_register_bank`, `axi4lite_slave`, `avalon_axi4lite_bridge`, và top `avalon_axi4lite_alu`.
+# AXI-Lite ALU Verification Notes
 
-“100%” ở đây nên hiểu là 100% coverage theo coverpoint/cross mình định nghĩa; code coverage 100% còn phụ thuộc tool và có vài nhánh default/reset/protocol cần kích đúng.
+README này mô tả đúng bộ testbench hiện có trong thư mục `tb/`. Hiện tại project có 3 directed/protocol testbench:
 
-## 1. Directed Test
+- `tb_axi_register_bank.sv`
+- `tb_axi4lite_slave.sv`
+- `tb_avalon_axi4lite_bridge.sv`
 
-### Cho `alu_core`
+Chưa có testbench riêng cho `alu_core` và top `avalon_axi4lite_alu`, nên các mục đó được ghi ở phần "cần bổ sung" thay vì xem như đã được cover.
 
-- Reset test: sau reset `result=0`, `busy=0`, `done=0`, `error=0`.
-- ADD normal: `A+B`, ví dụ `10+5=15`.
-- ADD overflow wrap: `32'hFFFF_FFFF + 1 = 0`.
-- SUB normal: `10-5=5`.
-- SUB underflow wrap: `0-1 = 32'hFFFF_FFFF`.
-- MUL normal: `3*7=21`.
-- MUL overflow/truncate: giá trị lớn để check lấy 32 bit thấp.
-- DIV normal: `20/4=5`.
-- DIV remainder truncate: `7/2=3`.
-- DIV by zero: `B=0`, expect `result=0`, `error=1`.
-- Invalid opcode: opcode `4..15`, expect `result=0`, `error=1`.
-- Start while busy: pulse `start` liên tiếp, operation thứ hai không được nhận khi `busy=1`.
-- Timing: sau `start`, `busy=1`; cycle sau `busy=0`, `done=1`; cycle tiếp `done=0`.
+## 1. Directed Test Đang Có
 
-### Cho `axi_register_bank`
+### `tb_axi_register_bank`
 
-- Reset register: `A/B/opcode/result/status/start_pulse` về 0.
+Các case hiện đã khớp với testbench:
+
+- Reset register/output: `operand_a`, `operand_b`, `opcode`, `start_pulse`, `STATUS`, `RESULT` về 0.
 - Write/read `ADDR_A = 0x08`.
+- Partial byte enable cho `ADDR_A`, ví dụ `wr_strb = 4'b0101`.
 - Write/read `ADDR_B = 0x0C`.
-- Write/read `ADDR_OPCODE = 0x10`, chỉ lấy 4 bit thấp.
-- Write `CTRL = 0x1` khi idle: tạo `start_pulse` đúng 1 cycle, status busy bit = 1.
-- Write `CTRL = 0x0`: không start.
-- Write `CTRL = 0x1` khi status busy: không tạo start mới.
-- Core done không error: `status = 3'b010`, result được latch.
-- Core done có error: `status = 3'b110`.
-- Read `STATUS = 0x04`, `RESULT = 0x14`.
-- Read invalid address: trả 0.
-- Write invalid address: không đổi register.
-- Byte enable từng byte cho `A`, `B`.
-- Byte enable partial cho `OPCODE`, đặc biệt `wr_strb[0]=0` thì opcode thấp không đổi.
+- Write/read `ADDR_OPCODE = 0x10`, chỉ giữ 4 bit thấp.
+- Write opcode với `wr_strb[0] = 0`, opcode không đổi.
 
-### Cho `axi4lite_slave`
+- Write `CTRL = 0x1` khi idle, tạo `start_pulse` đúng 1 cycle và set status busy.
+- Write `CTRL = 0x1` khi busy, không tạo start mới.
+- Core done không error: status đọc ra `0x2`, result được latch.
+- Write `CTRL = 0x0`, không tạo start.
+- Start lại sau done được chấp nhận.
+- Core done có error: status đọc ra `0x6`, result error được latch.
+- Invalid read trả 0.
+- Invalid write không làm hỏng register hợp lệ đã ghi trước đó.
 
-- Reset all AXI outputs/internal flags.
-- Write AW trước W.
-- Write W trước AW.
-- Write AW và W cùng cycle.
-- Hold `BVALID` khi `BREADY=0`, clear khi `BREADY=1`.
-- Đảm bảo `wr_en` chỉ pulse 1 cycle.
-- Read transaction bình thường: AR handshake, sau đó RVALID/RDATA.
-- Hold `RVALID` khi `RREADY=0`, clear khi `RREADY=1`.
-- Back-to-back write.
-- Back-to-back read.
-- Read/write interleaved nếu testbench cho phép.
-- Check `BRESP=OKAY`, `RRESP=OKAY`.
+Các case chưa có nếu muốn mở rộng:
 
-### Cho `avalon_axi4lite_bridge`
+- Byte enable từng byte cho `ADDR_B`.
+- Nhiều biến thể byte enable cho `ADDR_OPCODE`.
+- Check trực tiếp write invalid không đổi `B`/`opcode`, hiện mới check không corrupt `A`.
 
-- Reset: state idle, no valid, no readdatavalid.
+### `tb_axi4lite_slave`
+
+Các case hiện đã khớp với testbench:
+
+- Reset AXI output: không có `BVALID`, không có `RVALID`, không có `wr_en`, các ready ở trạng thái sẵn sàng.
+- AXI write với AW trước W.
+- AXI write với W trước AW.
+- AXI write với AW và W cùng cycle.
+- Check `wr_en` sinh đúng 1 cycle sau mỗi cặp AW/W.
+- Check `wr_addr`, `wr_data`, `wr_strb` đúng với transaction.
+- Hold `BVALID` khi `BREADY = 0`, clear sau khi `BREADY = 1`.
+- Check `BRESP = OKAY`.
+- AXI read: AR handshake, `rd_addr` đúng, `RDATA/RRESP` đúng.
+- Hold `RVALID` khi `RREADY = 0`, clear sau khi `RREADY = 1`.
+- Có nhiều write liên tiếp và hai read liên tiếp, bao gồm read thứ hai đóng vai trò back-to-back read đơn giản.
+
+Các case chưa có nếu muốn mở rộng:
+
+- Read/write interleaved thực sự.
+- Back-to-back write/read không có khoảng hở giữa response và request kế tiếp.
+- Assertion độc lập cho stable `AWADDR`, `WDATA/WSTRB`, `ARADDR`, `RDATA/RRESP`.
+- Negative protocol case: thiếu AW hoặc thiếu W thì không sinh response/write pulse.
+
+### `tb_avalon_axi4lite_bridge`
+
+Các case hiện đã khớp với testbench:
+
+- Reset output: không `waitrequest`, không `readdatavalid`, không AXI valid.
 - Avalon write khi idle.
-- Avalon read khi idle.
-- Nếu `avs_write` và `avs_read` cùng lúc: write được ưu tiên vì RTL check write trước.
-- `avs_waitrequest=1` khi bridge busy.
+- `avs_waitrequest = 1` trong lúc bridge bận.
 - Write với AWREADY/WREADY cùng cycle.
 - Write với AWREADY trước WREADY.
 - Write với WREADY trước AWREADY.
-- BVALID delay nhiều cycle.
-- Read với ARREADY delay.
-- Read với RVALID delay.
-- `avs_readdatavalid` chỉ pulse 1 cycle khi nhận RDATA.
-- Check latch address/writedata/byteenable ổn định trong transaction.
-- Đưa `m_axi_bresp/rresp` khác OKAY để toggle `unused_resp`, dù hiện tại bridge không xử lý lỗi.
+- Delay BVALID nhiều cycle.
+- Check `AWADDR`, `WDATA`, `WSTRB` giữ đúng trong lúc chờ ready.
+- Avalon read khi idle.
+- Delay ARREADY và RVALID.
+- Check `ARADDR` giữ đúng trong lúc chờ ready.
+- Check `RREADY` được giữ khi chờ response.
+- `avs_readdatavalid` pulse đúng 1 cycle và `avs_readdata` đúng.
+- Avalon read/write cùng lúc ưu tiên write, vì RTL hiện check write trước read.
+- Có kích `m_axi_bresp = 2'b10` để toggle đường response không dùng trong RTL.
 
-### Cho top `avalon_axi4lite_alu`
+Các case chưa có nếu muốn mở rộng:
 
-- Full software flow:
-  - write A
-  - write B
-  - write opcode
-  - write CTRL start
-  - poll STATUS
-  - read RESULT
+- Kích `m_axi_rresp` khác OKAY, hiện mới có `bresp` khác OKAY.
+- Check write không tạo `avs_readdatavalid`.
+- Check bridge không nhận command mới khi busy bằng một request thứ hai cụ thể.
+- Assertion Avalon master giữ stable request/data/address khi `avs_waitrequest = 1`.
+
+## 2. Protocol Test / Assertion Nên Bổ Sung
+
+Hiện testbench chủ yếu là directed self-checking bằng task `check`, chưa có SVA/protocol checker riêng. Nên bổ sung assertion cho:
+
+- AXI-Lite write:
+  - `AWVALID` giữ stable `AWADDR` tới khi `AWREADY`.
+  - `WVALID` giữ stable `WDATA/WSTRB` tới khi `WREADY`.
+  - `BVALID` giữ stable `BRESP` tới khi `BREADY`.
+  - Mỗi cặp AW/W sinh đúng một `wr_en`.
+  - Không sinh write response nếu thiếu AW hoặc thiếu W.
+
+- AXI-Lite read:
+  - `ARVALID` giữ stable `ARADDR` tới khi `ARREADY`.
+  - `RVALID` giữ stable `RDATA/RRESP` tới khi `RREADY`.
+  - Mỗi AR sinh đúng một R response.
+  - Không accept AR mới khi read transaction trước chưa hoàn tất, nếu RTL yêu cầu như vậy.
+
+- Avalon side:
+  - Khi `avs_waitrequest = 1`, master giữ stable request/address/writedata/byteenable theo Avalon-MM protocol.
+  - `avs_readdatavalid` chỉ xuất hiện cho read.
+  - Write không tạo `avs_readdatavalid`.
+  - Bridge không nhận command mới khi đang busy.
+  - Read/write cùng lúc ưu tiên write theo RTL hiện tại.
+
+## 3. Testbench Cần Bổ Sung
+
+### `alu_core`
+
+- Reset: `result = 0`, `busy = 0`, `done = 0`, `error = 0`.
+- ADD normal và overflow wrap.
+- SUB normal và underflow wrap.
+- MUL normal và overflow/truncate 32 bit thấp.
+- DIV normal và remainder truncate.
+- DIV by zero: `result = 0`, `error = 1`.
+- Invalid opcode `4..15`: `result = 0`, `error = 1`.
+- Start while busy: operation thứ hai không được nhận khi `busy = 1`.
+- Timing: sau `start` có `busy`, sau đó `done` pulse 1 cycle.
+
+### Top `avalon_axi4lite_alu`
+
+- Full software flow: write A, write B, write opcode, write CTRL start, poll STATUS, read RESULT.
 - Lặp flow cho ADD/SUB/MUL/DIV.
 - DIV by zero qua bus, check status error và result 0.
 - Invalid opcode qua bus, check status error.
 - Partial byte write qua Avalon byteenable.
 - Invalid address read/write qua Avalon.
-- Back-to-back ALU operations sau khi done.
+- Back-to-back ALU operation sau khi done.
 - Attempt start while busy qua Avalon, expect không nhận start mới.
-
-## 2. Random Test
-
-Nên có constrained random ở 3 tầng:
-
-- ALU random:
-  - random `operand_a`, `operand_b`, `opcode`.
-  - opcode distribution: `0..3` nhiều hơn, `4..15` vẫn phải cover.
-  - ép corner value: `0`, `1`, `32'hFFFF_FFFF`, `32'h8000_0000`, `32'h7FFF_FFFF`.
-  - với DIV, random cả `B=0` và `B!=0`.
-  - scoreboard tính expected bằng SystemVerilog model.
-
-- Register/bus random:
-  - random address trong `{0x00,0x04,0x08,0x0C,0x10,0x14}` và invalid.
-  - random write/read sequence.
-  - random byteenable `0000..1111`.
-  - random start timing: start khi idle, start khi busy, start sau done.
-  - random read status/result trong lúc operation đang chạy.
-
-- Protocol random:
-  - random delay cho `AWREADY`, `WREADY`, `BVALID`, `ARREADY`, `RVALID`.
-  - random `BREADY/RREADY` stall.
-  - random order AW/W.
-  - random Avalon read/write spacing.
-  - random backpressure để cover mọi state transition của bridge.
-
-## 3. Protocol Test / Assertion Test
-
-Nên có assertion hoặc protocol checker cho:
-
-- AXI-Lite write:
-  - `AWVALID` giữ stable `AWADDR` tới khi `AWREADY`.
-  - `WVALID` giữ stable `WDATA/WSTRB` tới khi `WREADY`.
-  - `BVALID` giữ tới khi `BREADY`.
-  - mỗi cặp AW/W sinh đúng một `wr_en`.
-  - không sinh write response nếu thiếu AW hoặc W.
-
-- AXI-Lite read:
-  - `ARVALID` giữ stable `ARADDR` tới khi `ARREADY`.
-  - `RVALID` giữ stable `RDATA/RRESP` tới khi `RREADY`.
-  - mỗi AR sinh đúng một R response.
-  - không accept AR mới khi `read_pending` hoặc `rvalid_q`.
-
-- Avalon side:
-  - khi `avs_waitrequest=1`, master không nên đổi request/data/address nếu theo protocol Avalon-MM.
-  - `avs_readdatavalid` chỉ xuất hiện cho read.
-  - write không tạo `avs_readdatavalid`.
-  - bridge không nhận command mới khi busy.
-  - write được ưu tiên nếu read/write cùng lúc, vì RTL hiện tại như vậy.
 
 ## 4. Coverage Nên Định Nghĩa
 
-Coverpoint tối thiểu:
+Để hướng tới 100% functional coverage, nên định nghĩa coverpoint/cross trước rồi map test vào từng mục:
 
 - Opcode: ADD, SUB, MUL, DIV, invalid.
-- Operand class A/B: zero, one, max, min signed-ish `0x8000_0000`, random.
+- Operand class A/B: zero, one, max, `0x8000_0000`, random.
 - DIV class: divisor zero, divisor nonzero.
 - Error: no error, divide-by-zero, invalid opcode.
 - ALU status: idle, busy, done.
 - Register address: ctrl, status, A, B, opcode, result, invalid.
-- Byteenable: `0000`, từng byte `0001/0010/0100/1000`, full `1111`, random mixed.
+- Byteenable: `0000`, từng byte `0001/0010/0100/1000`, full `1111`, mixed.
 - AXI write order: AW first, W first, same cycle.
 - AXI stalls: no stall, AW stall, W stall, B stall, AR stall, R stall.
 - Avalon operation: read, write, simultaneous read/write.
-- Cross quan trọng:
-  - opcode x error
-  - opcode x operand corner
-  - register address x byteenable
-  - write order x stall type
-  - operation type x waitrequest
-  - start_when x status_busy
+- Cross quan trọng: opcode x error, opcode x operand corner, register address x byteenable, write order x stall type, operation type x waitrequest, start_when x status_busy.
 
-**Kết luận ngắn:** directed test dùng để đóng hết corner rõ ràng; random test dùng để quét tổ hợp operand/address/byteenable/stall; protocol test/assertion dùng để bắt AXI-Lite và Avalon timing. Nếu bạn muốn coverage thật sự 100%, nên viết coverage model trước, rồi map từng testcase vào coverpoint/cross ở trên.
+## Kết Luận
+
+README cũ liệt kê nhiều testcase mục tiêu nhưng chưa khớp hoàn toàn với testbench hiện có. README này đã được chỉnh lại để phản ánh đúng directed/protocol test đang có trong `tb/`, đồng thời tách riêng các case nên bổ sung cho coverage đầy đủ hơn.

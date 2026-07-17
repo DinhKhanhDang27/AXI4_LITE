@@ -29,11 +29,11 @@ r1
 !s85 0
 31
 Z6 !s108 1784113366.000000
-!s107 rtl\avalon_axi4lite_alu.sv|rtl\avalon_axi4lite_bridge.sv|rtl\axi4lite_slave.sv|rtl\axi_register_bank.sv|rtl\alu_core.sv|
-Z7 !s90 -sv|rtl\alu_core.sv|rtl\axi_register_bank.sv|rtl\axi4lite_slave.sv|rtl\avalon_axi4lite_bridge.sv|rtl\avalon_axi4lite_alu.sv|
+Z7 !s107 rtl\avalon_axi4lite_alu.sv|rtl\avalon_axi4lite_bridge.sv|rtl\axi4lite_slave.sv|rtl\axi_register_bank.sv|rtl\alu_core.sv|
+Z8 !s90 -sv|rtl\alu_core.sv|rtl\axi_register_bank.sv|rtl\axi4lite_slave.sv|rtl\avalon_axi4lite_bridge.sv|rtl\avalon_axi4lite_alu.sv|
 !i113 1
 o-sv
-Z8 tCvgOpt 0
+Z9 tCvgOpt 0
 valu_core_2
 R1
 !s110 1784112145
@@ -58,7 +58,7 @@ r1
 !s90 -sv|rtl\alu_core.sv|rtl\alu_core_2.sv|rtl\axi_register_bank.sv|rtl\axi4lite_slave.sv|rtl\axi4lite_peripheral.sv|rtl\avalon_axi4lite_bridge.sv|rtl\avalon_axi4lite_alu.sv|
 !i113 1
 o-sv
-R8
+R9
 vavalon_axi4lite_alu
 R1
 R2
@@ -79,36 +79,36 @@ r1
 !s85 0
 31
 R6
-Z9 !s107 rtl\avalon_axi4lite_alu.sv|rtl\avalon_axi4lite_bridge.sv|rtl\axi4lite_slave.sv|rtl\axi_register_bank.sv|rtl\alu_core.sv|
 R7
+R8
 !i113 1
 o-sv
-R8
+R9
 vavalon_axi4lite_bridge
 R1
-R2
+Z10 !s110 1784273985
 !i10b 1
 !s100 4`dje1l]U<5N1Z>k62<mA0
 R3
-I886fzz2ciVCHY`>Rn>F>o2
+Ig96ULm1z^8WIFDodVH3^;3
 R4
 S1
 R0
 w1784112070
-8rtl\avalon_axi4lite_bridge.sv
-Frtl\avalon_axi4lite_bridge.sv
-!i122 4
+8rtl/avalon_axi4lite_bridge.sv
+Frtl/avalon_axi4lite_bridge.sv
+!i122 10
 L0 1 158
 R5
 r1
 !s85 0
 31
-R6
-R9
-R7
+Z11 !s108 1784273984.000000
+!s107 tb/tb_avalon_axi4lite_bridge.sv|rtl/avalon_axi4lite_bridge.sv|tb/tb_axi4lite_slave.sv|rtl/axi4lite_slave.sv|tb/tb_axi_register_bank.sv|rtl/axi_register_bank.sv|
+Z12 !s90 -sv|rtl/axi_register_bank.sv|tb/tb_axi_register_bank.sv|rtl/axi4lite_slave.sv|tb/tb_axi4lite_slave.sv|rtl/avalon_axi4lite_bridge.sv|tb/tb_avalon_axi4lite_bridge.sv|
 !i113 1
 o-sv
-R8
+R9
 vaxi4lite_peripheral
 R1
 !s110 1784112278
@@ -133,54 +133,129 @@ r1
 !s90 -sv|rtl\alu_core.sv|rtl\axi_register_bank.sv|rtl\axi4lite_slave.sv|rtl\axi4lite_peripheral.sv|rtl\avalon_axi4lite_bridge.sv|rtl\avalon_axi4lite_alu.sv|
 !i113 1
 o-sv
-R8
+R9
 vaxi4lite_slave
 R1
-R2
+R10
 !i10b 1
 !s100 =na0?3ZKz4I?S8YaZR8XZ1
 R3
-IF09KMoj0:VLUhj045ZXj:2
+IgG0PX_Bl2z<=7;5AUbaTH0
 R4
 S1
 R0
-w1784112072
-8rtl\axi4lite_slave.sv
-Frtl\axi4lite_slave.sv
-!i122 4
+w1784215497
+8rtl/axi4lite_slave.sv
+Frtl/axi4lite_slave.sv
+!i122 10
 L0 1 116
 R5
 r1
 !s85 0
 31
-R6
-R9
-R7
+R11
+Z13 !s107 tb/tb_avalon_axi4lite_bridge.sv|rtl/avalon_axi4lite_bridge.sv|tb/tb_axi4lite_slave.sv|rtl/axi4lite_slave.sv|tb/tb_axi_register_bank.sv|rtl/axi_register_bank.sv|
+R12
 !i113 1
 o-sv
-R8
+R9
 vaxi_register_bank
 R1
-R2
+R10
 !i10b 1
 !s100 4WD^25=`jGSM2O]5<8@_[1
 R3
-Ibgk;LjPz`:odEYhLN3j4Y3
+IiKcW8`nBhU5<PKn3=;YJU3
 R4
 S1
 R0
-w1784112138
-8rtl\axi_register_bank.sv
-Frtl\axi_register_bank.sv
-!i122 4
+w1784265771
+8rtl/axi_register_bank.sv
+Frtl/axi_register_bank.sv
+!i122 10
 L0 1 101
 R5
 r1
 !s85 0
 31
-R6
-R9
-R7
+R11
+R13
+R12
 !i113 1
 o-sv
-R8
+R9
+vtb_avalon_axi4lite_bridge
+R1
+R10
+!i10b 1
+!s100 CkJS0XJmDZ^IfXEG@174h2
+R3
+I^;b6TUNY?0Nj]BINJhi>90
+R4
+S1
+R0
+w1784269243
+8tb/tb_avalon_axi4lite_bridge.sv
+Ftb/tb_avalon_axi4lite_bridge.sv
+!i122 10
+L0 3 223
+R5
+r1
+!s85 0
+31
+R11
+R13
+R12
+!i113 1
+o-sv
+R9
+vtb_axi4lite_slave
+R1
+R10
+!i10b 1
+!s100 MgWz0HJbfQ>UAAb[U2O^]2
+R3
+Ib^7ASaCMW2W291PZJ=JQC0
+R4
+S1
+R0
+w1784269614
+8tb/tb_axi4lite_slave.sv
+Ftb/tb_axi4lite_slave.sv
+!i122 10
+L0 3 213
+R5
+r1
+!s85 0
+31
+R11
+R13
+R12
+!i113 1
+o-sv
+R9
+vtb_axi_register_bank
+R1
+R10
+!i10b 1
+!s100 RC=MZ@>2zCNRdFRNj^YPC1
+R3
+IWnXc7<@NFRB;VaP4Pz_8m2
+R4
+S1
+R0
+w1784269236
+8tb/tb_axi_register_bank.sv
+Ftb/tb_axi_register_bank.sv
+!i122 10
+L0 3 177
+R5
+r1
+!s85 0
+31
+R11
+R13
+R12
+!i113 1
+o-sv
+R9

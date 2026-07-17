@@ -1,134 +1,176 @@
-<mxfile host="app.diagrams.net" modified="2026-07-16T00:00:00.000Z" agent="Codex" version="24.7.17">
-  <diagram id="soc-avalon-axi4lite" name="SoC Avalon AXI4-Lite ALU">
-    <mxGraphModel dx="1600" dy="1000" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
-      <root>
-        <mxCell id="0" />
-        <mxCell id="1" parent="0" />
-
-        <mxCell id="title" value="Current SoC Block Diagram - Avalon-MM Internal Bus with AXI4-Lite ALU Peripheral" style="text;html=1;strokeColor=none;fillColor=none;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="140" y="20" width="1320" height="40" as="geometry" />
-        </mxCell>
-
-        <mxCell id="sw" value="software_axi4lite/source.c&#xa;Nios II C test&#xa;IOWR/IORD base 0x00011100&#xa;printf output" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=center;" vertex="1" parent="1">
-          <mxGeometry x="70" y="110" width="220" height="110" as="geometry" />
-        </mxCell>
-
-        <mxCell id="nios" value="Nios II CPU&#xa;nios2_qsys_0&#xa;instruction_master&#xa;data_master" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;align=center;" vertex="1" parent="1">
-          <mxGeometry x="370" y="105" width="230" height="120" as="geometry" />
-        </mxCell>
-
-        <mxCell id="avalon_bus" value="Avalon-MM Internal Interconnect / Address Decoder&#xa;data map: onchip RAM 0x8000-0xFCFF | debug 0x10800-0x10FFF | ALU 0x11100-0x1113F | JTAG UART 0x11208-0x1120F" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" vertex="1" parent="1">
-          <mxGeometry x="80" y="310" width="1400" height="80" as="geometry" />
-        </mxCell>
-
-        <mxCell id="ram" value="On-chip Memory&#xa;onchip_memory2_0.s1&#xa;Avalon slave&#xa;0x00008000-0x0000FCFF" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=center;" vertex="1" parent="1">
-          <mxGeometry x="110" y="500" width="230" height="110" as="geometry" />
-        </mxCell>
-
-        <mxCell id="debug" value="Nios II JTAG Debug Module&#xa;Avalon slave&#xa;0x00010800-0x00010FFF" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;align=center;" vertex="1" parent="1">
-          <mxGeometry x="390" y="500" width="230" height="110" as="geometry" />
-        </mxCell>
-
-        <mxCell id="jtag" value="JTAG UART&#xa;jtag_uart_0&#xa;Avalon slave + IRQ&#xa;0x00011208-0x0001120F&#xa;terminal output" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=center;" vertex="1" parent="1">
-          <mxGeometry x="1230" y="500" width="230" height="125" as="geometry" />
-        </mxCell>
-
-        <mxCell id="alu_shell" value="ALU_AXI4_LITE_0 / avalon_axi4lite_alu.sv&#xa;Avalon slave wrapper at 0x00011100-0x0001113F" style="swimlane;html=1;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;fontSize=15;fontStyle=1;startSize=34;" vertex="1" parent="1">
-          <mxGeometry x="690" y="465" width="470" height="420" as="geometry" />
-        </mxCell>
-
-        <mxCell id="avalon_slave_port" value="Avalon-MM Slave Port&#xa;avs_address/read/write&#xa;avs_writedata/byteenable&#xa;avs_readdata/waitrequest" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;align=center;" vertex="1" parent="alu_shell">
-          <mxGeometry x="30" y="60" width="185" height="105" as="geometry" />
-        </mxCell>
-
-        <mxCell id="bridge" value="avalon_axi4lite_bridge.sv&#xa;Avalon transaction FSM&#xa;WRITE: AW + W then B&#xa;READ: AR then R" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;" vertex="1" parent="alu_shell">
-          <mxGeometry x="250" y="60" width="190" height="105" as="geometry" />
-        </mxCell>
-
-        <mxCell id="axi_bus" value="AXI4-Lite Internal Channels&#xa;AWADDR/AWVALID/AWREADY&#xa;WDATA/WSTRB/WVALID/WREADY&#xa;BRESP/BVALID/BREADY&#xa;ARADDR/ARVALID/ARREADY&#xa;RDATA/RRESP/RVALID/RREADY" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=12;align=center;" vertex="1" parent="alu_shell">
-          <mxGeometry x="30" y="205" width="410" height="95" as="geometry" />
-        </mxCell>
-
-        <mxCell id="axi_slave" value="axi4lite_slave.sv&#xa;AXI4-Lite slave handshake&#xa;creates wr_en/wr_addr/wr_data&#xa;drives rd_addr/rd_data" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;" vertex="1" parent="alu_shell">
-          <mxGeometry x="30" y="335" width="185" height="105" as="geometry" />
-        </mxCell>
-
-        <mxCell id="regbank" value="axi_register_bank.sv&#xa;CTRL/STATUS/A/B/OPCODE/RESULT&#xa;start_pulse&#xa;status: busy done error" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;align=center;" vertex="1" parent="alu_shell">
-          <mxGeometry x="255" y="335" width="185" height="105" as="geometry" />
-        </mxCell>
-
-        <mxCell id="core" value="alu_core.sv&#xa;ADD SUB MUL DIV&#xa;result, done, error" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;align=center;" vertex="1" parent="alu_shell">
-          <mxGeometry x="145" y="485" width="185" height="85" as="geometry" />
-        </mxCell>
-
-        <mxCell id="legend" value="Legend&#xa;Purple: Avalon-MM path&#xa;Orange: AXI4-Lite channels&#xa;Green: memory/register storage&#xa;Yellow: software-visible output / compute" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=13;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="70" y="720" width="280" height="120" as="geometry" />
-        </mxCell>
-
-        <mxCell id="sw_to_nios" value="runs on" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" edge="1" parent="1" source="sw" target="nios">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="nios_to_bus" value="Avalon-MM master transactions" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" edge="1" parent="1" source="nios" target="avalon_bus">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="bus_to_ram" value="instr/data" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" edge="1" parent="1" source="avalon_bus" target="ram">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="bus_to_debug" value="debug" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" edge="1" parent="1" source="avalon_bus" target="debug">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="bus_to_alu" value="Avalon-MM slave access&#xa;base 0x11100" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#9673a6;" edge="1" parent="1" source="avalon_bus" target="alu_shell">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="bus_to_jtag" value="printf / terminal" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" edge="1" parent="1" source="avalon_bus" target="jtag">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="jtag_to_pc" value="JTAG terminal" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" edge="1" parent="1" source="jtag">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="1480" y="690" as="targetPoint" />
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="avalon_to_bridge" value="Avalon-MM request/response" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" edge="1" parent="alu_shell" source="avalon_slave_port" target="bridge">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="bridge_to_axi" value="conversion point&#xa;Avalon -> AXI4-Lite" style="endArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#d79b00;" edge="1" parent="alu_shell" source="bridge" target="axi_bus">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="axi_to_slave" value="AXI4-Lite handshake" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#d79b00;" edge="1" parent="alu_shell" source="axi_bus" target="axi_slave">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="slave_to_regbank" value="register read/write strobes" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#82b366;" edge="1" parent="alu_shell" source="axi_slave" target="regbank">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="regbank_to_core" value="start, A, B, opcode" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#82b366;" edge="1" parent="alu_shell" source="regbank" target="core">
-          <mxGeometry relative="1" as="geometry" />
-        </mxCell>
-
-        <mxCell id="core_to_regbank" value="result, done, error" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#d6b656;" edge="1" parent="alu_shell" source="core" target="regbank">
-          <mxGeometry relative="1" as="geometry">
-            <mxPoint x="390" y="530" as="sourcePoint" />
-            <mxPoint x="390" y="440" as="targetPoint" />
-            <Array as="points">
-              <mxPoint x="390" y="530" />
-            </Array>
-          </mxGeometry>
-        </mxCell>
-
-        <mxCell id="regmap" value="ALU register map at base 0x00011100&#xa;+0x00 CTRL bit0 START&#xa;+0x04 STATUS bit0 BUSY, bit1 DONE, bit2 ERROR&#xa;+0x08 OPERAND_A&#xa;+0x0C OPERAND_B&#xa;+0x10 OPCODE: 0 ADD, 1 SUB, 2 MUL, 3 DIV&#xa;+0x14 RESULT" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=13;align=left;spacingLeft=10;" vertex="1" parent="1">
-          <mxGeometry x="1180" y="720" width="300" height="145" as="geometry" />
-        </mxCell>
-      </root>
-    </mxGraphModel>
-  </diagram>
-</mxfile>
+<mxGraphModel dx="5180" dy="2137" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1600" pageHeight="1000" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="title" parent="1" style="text;html=1;strokeColor=none;fillColor=none;fontSize=22;fontStyle=1;align=center;verticalAlign=middle;" value="Current SoC Block Diagram - Avalon-MM Internal Bus with AXI4-Lite ALU Peripheral" vertex="1">
+      <mxGeometry height="40" width="1320" x="140" y="20" as="geometry" />
+    </mxCell>
+    <mxCell id="sw" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=center;" value="software_axi4lite/source.c&#xa;Nios II C test&#xa;IOWR/IORD base 0x00011100&#xa;printf output" vertex="1">
+      <mxGeometry height="110" width="220" x="70" y="110" as="geometry" />
+    </mxCell>
+    <mxCell id="nios" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;align=center;" value="Nios II CPU&#xa;nios2_qsys_0&#xa;instruction_master&#xa;data_master" vertex="1">
+      <mxGeometry height="120" width="230" x="370" y="105" as="geometry" />
+    </mxCell>
+    <mxCell id="avalon_bus" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" value="Avalon-MM Internal Interconnect / Address Decoder&#xa;data map: onchip RAM 0x8000-0xFCFF | debug 0x10800-0x10FFF | ALU 0x11100-0x1113F | JTAG UART 0x11208-0x1120F" vertex="1">
+      <mxGeometry height="80" width="1400" x="80" y="310" as="geometry" />
+    </mxCell>
+    <mxCell id="ram" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=14;align=center;" value="On-chip Memory&#xa;onchip_memory2_0.s1&#xa;Avalon slave&#xa;0x00008000-0x0000FCFF" vertex="1">
+      <mxGeometry height="110" width="230" x="110" y="500" as="geometry" />
+    </mxCell>
+    <mxCell id="debug" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontSize=14;align=center;" value="Nios II JTAG Debug Module&#xa;Avalon slave&#xa;0x00010800-0x00010FFF" vertex="1">
+      <mxGeometry height="110" width="230" x="390" y="500" as="geometry" />
+    </mxCell>
+    <mxCell id="jtag" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=center;" value="JTAG UART&#xa;jtag_uart_0&#xa;Avalon slave + IRQ&#xa;0x00011208-0x0001120F&#xa;terminal output" vertex="1">
+      <mxGeometry height="125" width="230" x="1230" y="500" as="geometry" />
+    </mxCell>
+    <mxCell id="alu_shell" parent="1" style="swimlane;html=1;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;fontSize=15;fontStyle=1;startSize=34;" value="ALU_AXI4_LITE_0 / avalon_axi4lite_alu.sv&#xa;Avalon slave wrapper at 0x00011100-0x0001113F" vertex="1">
+      <mxGeometry height="420" width="470" x="690" y="465" as="geometry" />
+    </mxCell>
+    <mxCell id="avalon_slave_port" parent="alu_shell" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;align=center;" value="Avalon-MM Slave Port&#xa;avs_address/read/write&#xa;avs_writedata/byteenable&#xa;avs_readdata/waitrequest" vertex="1">
+      <mxGeometry height="105" width="185" x="30" y="60" as="geometry" />
+    </mxCell>
+    <mxCell id="bridge" parent="alu_shell" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;" value="avalon_axi4lite_bridge.sv&#xa;Avalon transaction FSM&#xa;WRITE: AW + W then B&#xa;READ: AR then R" vertex="1">
+      <mxGeometry height="105" width="190" x="250" y="60" as="geometry" />
+    </mxCell>
+    <mxCell id="axi_bus" parent="alu_shell" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=12;align=center;" value="AXI4-Lite Internal Channels&#xa;AWADDR/AWVALID/AWREADY&#xa;WDATA/WSTRB/WVALID/WREADY&#xa;BRESP/BVALID/BREADY&#xa;ARADDR/ARVALID/ARREADY&#xa;RDATA/RRESP/RVALID/RREADY" vertex="1">
+      <mxGeometry height="95" width="410" x="30" y="205" as="geometry" />
+    </mxCell>
+    <mxCell id="axi_slave" parent="alu_shell" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;" value="axi4lite_slave.sv&#xa;AXI4-Lite slave handshake&#xa;creates wr_en/wr_addr/wr_data&#xa;drives rd_addr/rd_data" vertex="1">
+      <mxGeometry height="105" width="185" x="30" y="335" as="geometry" />
+    </mxCell>
+    <mxCell id="regbank" parent="alu_shell" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;align=center;" value="axi_register_bank.sv&#xa;CTRL/STATUS/A/B/OPCODE/RESULT&#xa;start_pulse&#xa;status: busy done error" vertex="1">
+      <mxGeometry height="105" width="185" x="255" y="335" as="geometry" />
+    </mxCell>
+    <mxCell id="core" parent="alu_shell" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;align=center;" value="alu_core.sv&#xa;ADD SUB MUL DIV&#xa;result, done, error" vertex="1">
+      <mxGeometry height="85" width="185" x="145" y="485" as="geometry" />
+    </mxCell>
+    <mxCell id="avalon_to_bridge" edge="1" parent="alu_shell" source="avalon_slave_port" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" target="bridge" value="Avalon-MM request/response">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="bridge_to_axi" edge="1" parent="alu_shell" source="bridge" style="endArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#d79b00;" target="axi_bus" value="conversion point&#xa;Avalon -&gt; AXI4-Lite">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="axi_to_slave" edge="1" parent="alu_shell" source="axi_bus" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#d79b00;" target="axi_slave" value="AXI4-Lite handshake">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="slave_to_regbank" edge="1" parent="alu_shell" source="axi_slave" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#82b366;" target="regbank" value="register read/write strobes">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="regbank_to_core" edge="1" parent="alu_shell" source="regbank" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#82b366;" target="core" value="start, A, B, opcode">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="core_to_regbank" edge="1" parent="alu_shell" source="core" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#d6b656;" target="regbank" value="result, done, error">
+      <mxGeometry relative="1" as="geometry">
+        <Array as="points">
+          <mxPoint x="390" y="530" />
+        </Array>
+        <mxPoint x="390" y="530" as="sourcePoint" />
+        <mxPoint x="390" y="440" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="legend" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=13;align=left;spacingLeft=10;" value="Legend&#xa;Purple: Avalon-MM path&#xa;Orange: AXI4-Lite channels&#xa;Green: memory/register storage&#xa;Yellow: software-visible output / compute" vertex="1">
+      <mxGeometry height="120" width="280" x="70" y="720" as="geometry" />
+    </mxCell>
+    <mxCell id="sw_to_nios" edge="1" parent="1" source="sw" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" target="nios" value="runs on">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="nios_to_bus" edge="1" parent="1" source="nios" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" target="avalon_bus" value="Avalon-MM master transactions">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="bus_to_ram" edge="1" parent="1" source="avalon_bus" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" target="ram" value="instr/data">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="bus_to_debug" edge="1" parent="1" source="avalon_bus" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" target="debug" value="debug">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="bus_to_alu" edge="1" parent="1" source="avalon_bus" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#9673a6;" target="alu_shell" value="Avalon-MM slave access&#xa;base 0x11100">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="bus_to_jtag" edge="1" parent="1" source="avalon_bus" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" target="jtag" value="printf / terminal">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="jtag_to_pc" edge="1" parent="1" source="jtag" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" value="JTAG terminal">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="1480" y="690" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="regmap" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#ffffff;strokeColor=#666666;fontSize=13;align=left;spacingLeft=10;" value="ALU register map at base 0x00011100&#xa;+0x00 CTRL bit0 START&#xa;+0x04 STATUS bit0 BUSY, bit1 DONE, bit2 ERROR&#xa;+0x08 OPERAND_A&#xa;+0x0C OPERAND_B&#xa;+0x10 OPCODE: 0 ADD, 1 SUB, 2 MUL, 3 DIV&#xa;+0x14 RESULT" vertex="1">
+      <mxGeometry height="145" width="300" x="1180" y="720" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-1" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=15;fontStyle=1;align=center;verticalAlign=middle;" value="&lt;font style=&quot;font-size: 24px;&quot;&gt;Avalon-MM Internal Interconnect&lt;/font&gt;" vertex="1">
+      <mxGeometry height="80" width="1400" x="470" y="1390" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-2" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=14;align=center;" value="&lt;b&gt;&lt;font style=&quot;font-size: 36px;&quot;&gt;source.c&lt;br&gt;&lt;/font&gt;&lt;/b&gt;" vertex="1">
+      <mxGeometry height="110" width="220" x="340" y="1185" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-3" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=14;align=center;" value="&lt;font style=&quot;font-size: 36px;&quot;&gt;Nios II CPU&lt;br&gt;&lt;/font&gt;" vertex="1">
+      <mxGeometry height="120" width="230" x="640" y="1180" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-4" edge="1" parent="1" source="sfFDMXiNCFUP_pr3U9z1-2" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;" target="sfFDMXiNCFUP_pr3U9z1-3" value="">
+      <mxGeometry relative="1" y="-30" as="geometry">
+        <mxPoint as="offset" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-5" edge="1" parent="1" source="sfFDMXiNCFUP_pr3U9z1-3" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;&lt;b&gt;Avalon-MM master transactions&lt;/b&gt;&lt;/font&gt;">
+      <mxGeometry relative="1" x="0.3487" y="74" as="geometry">
+        <mxPoint as="offset" />
+        <Array as="points">
+          <mxPoint x="986" y="1240" />
+        </Array>
+        <mxPoint x="986" y="1385" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-18" edge="1" parent="1" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#9673a6;" value="Avalon-MM slave access&#xa;base 0x11100">
+      <mxGeometry relative="1" as="geometry">
+        <mxPoint x="998" y="1470" as="sourcePoint" />
+        <mxPoint x="1031" y="1545" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-32" parent="1" style="swimlane;html=1;rounded=0;fillColor=#f5f5f5;strokeColor=#666666;fontSize=15;fontStyle=1;startSize=34;" value="Avalon slave wrapper&amp;nbsp;" vertex="1">
+      <mxGeometry height="600" width="790" x="850" y="1550" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-33" parent="sfFDMXiNCFUP_pr3U9z1-32" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;fontSize=13;align=center;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Avalon-MM Slave Port&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+      <mxGeometry height="105" width="185" x="30" y="60" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-34" parent="sfFDMXiNCFUP_pr3U9z1-32" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;avalon_axi4lite_bridge.sv&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+      <mxGeometry height="105" width="220" x="500" y="60" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-35" parent="sfFDMXiNCFUP_pr3U9z1-32" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fce5cd;strokeColor=#d79b00;fontSize=12;align=center;" value="AXI4-Lite Internal Channels&#xa;AWADDR/AWVALID/AWREADY&#xa;WDATA/WSTRB/WVALID/WREADY&#xa;BRESP/BVALID/BREADY&#xa;ARADDR/ARVALID/ARREADY&#xa;RDATA/RRESP/RVALID/RREADY" vertex="1">
+      <mxGeometry height="95" width="410" x="60" y="190" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-36" parent="sfFDMXiNCFUP_pr3U9z1-32" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontSize=13;align=center;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;axi4lite_slave.sv&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+      <mxGeometry height="105" width="185" x="30" y="335" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-37" parent="sfFDMXiNCFUP_pr3U9z1-32" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;fontSize=13;align=center;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;axi_register_bank.sv&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+      <mxGeometry height="105" width="185" x="500" y="330" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-38" parent="sfFDMXiNCFUP_pr3U9z1-32" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;fontSize=13;align=center;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;alu_core.sv&lt;/font&gt;&lt;div&gt;&lt;br&gt;&lt;/div&gt;" vertex="1">
+      <mxGeometry height="85" width="185" x="145" y="485" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-39" edge="1" parent="sfFDMXiNCFUP_pr3U9z1-32" source="sfFDMXiNCFUP_pr3U9z1-33" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#9673a6;" target="sfFDMXiNCFUP_pr3U9z1-34" value="Avalon-MM request/response">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-40" edge="1" parent="sfFDMXiNCFUP_pr3U9z1-32" source="sfFDMXiNCFUP_pr3U9z1-34" style="endArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#d79b00;" target="sfFDMXiNCFUP_pr3U9z1-35" value="conversion point&#xa;Avalon -&gt; AXI4-Lite">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-41" edge="1" parent="sfFDMXiNCFUP_pr3U9z1-32" source="sfFDMXiNCFUP_pr3U9z1-35" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=3;fontSize=12;strokeColor=#d79b00;" target="sfFDMXiNCFUP_pr3U9z1-36" value="AXI4-Lite handshake">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-42" edge="1" parent="sfFDMXiNCFUP_pr3U9z1-32" source="sfFDMXiNCFUP_pr3U9z1-36" style="endArrow=block;startArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#82b366;" target="sfFDMXiNCFUP_pr3U9z1-37" value="register read/write strobes">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-43" edge="1" parent="sfFDMXiNCFUP_pr3U9z1-32" source="sfFDMXiNCFUP_pr3U9z1-37" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#82b366;" target="sfFDMXiNCFUP_pr3U9z1-38" value="start, A, B, opcode">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="sfFDMXiNCFUP_pr3U9z1-44" edge="1" parent="sfFDMXiNCFUP_pr3U9z1-32" source="sfFDMXiNCFUP_pr3U9z1-38" style="endArrow=block;html=1;rounded=0;strokeWidth=2;fontSize=12;strokeColor=#d6b656;" target="sfFDMXiNCFUP_pr3U9z1-37" value="result, done, error">
+      <mxGeometry relative="1" x="0.04" y="19" as="geometry">
+        <mxPoint as="offset" />
+        <Array as="points">
+          <mxPoint x="600" y="530" />
+        </Array>
+        <mxPoint x="390" y="530" as="sourcePoint" />
+        <mxPoint x="390" y="440" as="targetPoint" />
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>

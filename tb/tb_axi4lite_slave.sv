@@ -32,6 +32,7 @@ module tb_axi4lite_slave;
 
     int errors;
     int wr_pulses;
+    int unsigned seed;
 
     axi4lite_slave #(
         .ADDR_WIDTH(ADDR_WIDTH),
@@ -46,6 +47,11 @@ module tb_axi4lite_slave;
             wr_pulses++;
         end
     end
+
+    function automatic int unsigned rand32();
+        seed = (seed * 32'd1664525) + 32'd1013904223;
+        return seed;
+    endfunction
 
     task automatic check(input string name, input bit ok);
         if (!ok) begin
@@ -192,8 +198,111 @@ module tb_axi4lite_slave;
         s_axi_rready = 1'b0;
     endtask
 
+    task automatic axi_write_random(
+        input logic [ADDR_WIDTH-1:0] addr,
+        input logic [DATA_WIDTH-1:0] data,
+        input logic [(DATA_WIDTH/8)-1:0] strb,
+        input int aw_delay,
+        input int w_delay,
+        input int bready_delay
+    );
+        fork
+            begin
+                repeat (aw_delay) @(posedge aclk);
+                @(negedge aclk);
+                s_axi_awaddr = addr;
+                s_axi_awvalid = 1'b1;
+                @(posedge aclk);
+                while (!s_axi_awready) @(posedge aclk);
+                @(negedge aclk);
+                s_axi_awvalid = 1'b0;
+            end
+            begin
+                repeat (w_delay) @(posedge aclk);
+                @(negedge aclk);
+                s_axi_wdata = data;
+                s_axi_wstrb = strb;
+                s_axi_wvalid = 1'b1;
+                @(posedge aclk);
+                while (!s_axi_wready) @(posedge aclk);
+                @(negedge aclk);
+                s_axi_wvalid = 1'b0;
+            end
+        join
+
+        wait_write_pulse(addr, data, strb, "random AXI write");
+        check("random BVALID asserted", s_axi_bvalid == 1'b1);
+        repeat (bready_delay) begin
+            @(posedge aclk);
+            check("random BVALID held during stall", s_axi_bvalid == 1'b1 && s_axi_bresp == 2'b00);
+        end
+        @(negedge aclk);
+        s_axi_bready = 1'b1;
+        @(posedge aclk);
+        @(negedge aclk);
+        s_axi_bready = 1'b0;
+    endtask
+
+    task automatic axi_read_random(
+        input logic [ADDR_WIDTH-1:0] addr,
+        input logic [DATA_WIDTH-1:0] data,
+        input int ar_delay,
+        input int rready_delay
+    );
+        repeat (ar_delay) @(posedge aclk);
+        @(negedge aclk);
+        rd_data = data;
+        s_axi_araddr = addr;
+        s_axi_arvalid = 1'b1;
+        @(posedge aclk);
+        while (!s_axi_arready) @(posedge aclk);
+        @(negedge aclk);
+        s_axi_arvalid = 1'b0;
+
+        wait (s_axi_rvalid);
+        check("random read address", rd_addr == addr);
+        check("random read data/resp", s_axi_rdata == data && s_axi_rresp == 2'b00);
+        repeat (rready_delay) begin
+            @(posedge aclk);
+            check("random RVALID held during stall", s_axi_rvalid == 1'b1 && s_axi_rdata == data);
+        end
+        @(negedge aclk);
+        s_axi_rready = 1'b1;
+        @(posedge aclk);
+        @(negedge aclk);
+        s_axi_rready = 1'b0;
+    endtask
+
+    task automatic random_axi_tests(input int iterations);
+        logic [ADDR_WIDTH-1:0] addr;
+        logic [DATA_WIDTH-1:0] data;
+        logic [(DATA_WIDTH/8)-1:0] strb;
+        int aw_delay;
+        int w_delay;
+        int resp_delay;
+
+        for (int i = 0; i < iterations; i++) begin
+            addr = rand32();
+            data = rand32();
+            strb = rand32();
+            if (strb == 4'b0000) begin
+                strb = 4'b0001 << (rand32() % 4);
+            end
+            aw_delay = rand32() % 4;
+            w_delay = rand32() % 4;
+            resp_delay = rand32() % 4;
+
+            if ((rand32() & 1) == 0) begin
+                axi_write_random(addr, data, strb, aw_delay, w_delay, resp_delay);
+            end else begin
+                axi_read_random(addr, data, aw_delay, resp_delay);
+            end
+        end
+    endtask
+
     initial begin
         errors = 0;
+        seed = 32'h4A11_5EED;
         reset_dut();
 
         check("reset outputs", !s_axi_bvalid && !s_axi_rvalid && !wr_en && s_axi_awready && s_axi_wready && s_axi_arready);
@@ -205,6 +314,8 @@ module tb_axi4lite_slave;
 
         axi_read(6'h04, 32'hCAFE_BABE, "read transaction");
         axi_read(6'h14, 32'h1234_5678, "back-to-back read");
+
+        random_axi_tests(80);
 
         if (errors == 0) begin
             $display("tb_axi4lite_slave PASSED");

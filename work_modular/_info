@@ -1,0 +1,341 @@
+m255
+K4
+z2
+!s11f vlog 2020.1 2020.02, Feb 28 2020
+13
+!s112 1.1
+!i10d 8192
+!i10e 25
+!i10f 100
+cModel Technology
+Z0 dD:/INTERN/NghienCuu_AXI_LITE
+vavalon_axi4lite_bridge
+Z1 DXx6 sv_std 3 std 0 22 VYECXdT12H8WgbUP_5Y6:3
+Z2 !s110 1784860573
+!i10b 1
+!s100 f]XYk`mOeKFQEGFJekbW32
+Z3 !s11b Dg1SIo80bB@j0V0VzS_@n1
+I3VQjBkzH;LC;<iZ5dPD>b3
+Z4 VDg1SIo80bB@j0V0VzS_@n1
+S1
+R0
+w1784435519
+8rtl\avalon_axi4lite_bridge.sv
+Frtl\avalon_axi4lite_bridge.sv
+!i122 3
+L0 1 159
+Z5 OV;L;2020.1;71
+r1
+!s85 0
+31
+Z6 !s108 1784860573.000000
+Z7 !s107 tb\tb_avalon_axi4lite_bridge\tb_environment.sv|tb\tb_avalon_axi4lite_bridge\tb_random.sv|tb\tb_avalon_axi4lite_bridge\tb_directed.sv|tb\tb_avalon_axi4lite_bridge\tb_monitor.sv|tb\tb_avalon_axi4lite_bridge\tb_driver.sv|tb\tb_avalon_axi4lite_bridge\tb_generator.sv|tb\tb_avalon_axi4lite_bridge\tb_coverage.sv|tb\tb_avalon_axi4lite_bridge\tb_scoreboard.sv|tb\tb_avalon_axi4lite_bridge\tb_transaction.sv|tb\tb_avalon_axi4lite_bridge\tb_pkg.sv|tb\tb_avalon_axi4lite_bridge\tb_if.sv|tb\tb_avalon_axi4lite_bridge\tb_top.sv|rtl\avalon_axi4lite_bridge.sv|
+Z8 !s90 -sv|-work|work_modular|rtl\avalon_axi4lite_bridge.sv|tb\tb_avalon_axi4lite_bridge\tb_top.sv|
+!i113 1
+Z9 o-sv -work work_modular
+Z10 tCvgOpt 0
+Yavalon_bridge_tb_if
+R1
+R2
+!i10b 1
+!s100 KL<>6AS5n<n:H4mZh<G^P2
+R3
+IA_Gf[B;L<VOZUj92h4Q3O0
+R4
+S1
+R0
+w1784860025
+8tb\tb_avalon_axi4lite_bridge\tb_if.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_if.sv
+!i122 3
+Z11 L0 1 0
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+Xavalon_bridge_tb_pkg
+!s115 avalon_bridge_tb_if
+R1
+R2
+!i10b 1
+!s100 ]CUNdBRQUJ_S<LS4]`FRk3
+R3
+I8l7G_O5W;BHOlW;<n4W0N3
+V8l7G_O5W;BHOlW;<n4W0N3
+S1
+R0
+w1784860557
+Ftb\tb_avalon_axi4lite_bridge\tb_pkg.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_transaction.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_scoreboard.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_coverage.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_generator.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_driver.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_monitor.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_directed.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_random.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_environment.sv
+!i122 3
+R11
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+vaxi4lite_slave
+R1
+Z12 !s110 1784860588
+!i10b 1
+!s100 =na0?3ZKz4I?S8YaZR8XZ1
+R3
+IO`6A:a2PoX3W`bRUGJRLI3
+R4
+S1
+R0
+w1784215497
+8rtl\axi4lite_slave.sv
+Frtl\axi4lite_slave.sv
+!i122 4
+L0 1 116
+R5
+r1
+!s85 0
+31
+Z13 !s108 1784860587.000000
+Z14 !s107 tb\tb_axi4lite_slave\tb_environment.sv|tb\tb_axi4lite_slave\tb_random.sv|tb\tb_axi4lite_slave\tb_directed.sv|tb\tb_axi4lite_slave\tb_monitor.sv|tb\tb_axi4lite_slave\tb_driver.sv|tb\tb_axi4lite_slave\tb_generator.sv|tb\tb_axi4lite_slave\tb_coverage.sv|tb\tb_axi4lite_slave\tb_scoreboard.sv|tb\tb_axi4lite_slave\tb_transaction.sv|tb\tb_axi4lite_slave\tb_pkg.sv|tb\tb_axi4lite_slave\tb_if.sv|tb\tb_axi4lite_slave\tb_top.sv|rtl\axi4lite_slave.sv|
+Z15 !s90 -sv|-work|work_modular|rtl\axi4lite_slave.sv|tb\tb_axi4lite_slave\tb_top.sv|
+!i113 1
+R9
+R10
+Yaxi4lite_slave_tb_if
+R1
+R12
+!i10b 1
+!s100 4;XM@gPDANDYT>^UD[T[z2
+R3
+Ig6fD^g6P35`dIdV80HD7j2
+R4
+S1
+R0
+w1784860219
+8tb\tb_axi4lite_slave\tb_if.sv
+Ftb\tb_axi4lite_slave\tb_if.sv
+!i122 4
+R11
+R5
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 1
+R9
+R10
+Xaxi4lite_slave_tb_pkg
+!s115 axi4lite_slave_tb_if
+R1
+R12
+!i10b 1
+!s100 e4BnBZO:fUO_KVD]XFQET0
+R3
+I:1;[0UWZ1M@2IC3[_FYzd2
+V:1;[0UWZ1M@2IC3[_FYzd2
+S1
+R0
+w1784860562
+Ftb\tb_axi4lite_slave\tb_pkg.sv
+Ftb\tb_axi4lite_slave\tb_transaction.sv
+Ftb\tb_axi4lite_slave\tb_scoreboard.sv
+Ftb\tb_axi4lite_slave\tb_coverage.sv
+Ftb\tb_axi4lite_slave\tb_generator.sv
+Ftb\tb_axi4lite_slave\tb_driver.sv
+Ftb\tb_axi4lite_slave\tb_monitor.sv
+Ftb\tb_axi4lite_slave\tb_directed.sv
+Ftb\tb_axi4lite_slave\tb_random.sv
+Ftb\tb_axi4lite_slave\tb_environment.sv
+!i122 4
+R11
+R5
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 1
+R9
+R10
+vaxi_register_bank
+R1
+Z16 !s110 1784860602
+!i10b 1
+!s100 4WD^25=`jGSM2O]5<8@_[1
+R3
+I_=d9B:j:liddA7`ZJ?Mn@3
+R4
+S1
+R0
+w1784265771
+8rtl\axi_register_bank.sv
+Frtl\axi_register_bank.sv
+!i122 5
+L0 1 101
+R5
+r1
+!s85 0
+31
+Z17 !s108 1784860602.000000
+!s107 tb\tb_axi_register_bank\tb_environment.sv|tb\tb_axi_register_bank\tb_random.sv|tb\tb_axi_register_bank\tb_directed.sv|tb\tb_axi_register_bank\tb_monitor.sv|tb\tb_axi_register_bank\tb_driver.sv|tb\tb_axi_register_bank\tb_generator.sv|tb\tb_axi_register_bank\tb_coverage.sv|tb\tb_axi_register_bank\tb_scoreboard.sv|tb\tb_axi_register_bank\tb_transaction.sv|tb\tb_axi_register_bank\tb_pkg.sv|tb\tb_axi_register_bank\tb_if.sv|tb\tb_axi_register_bank\tb_top.sv|rtl\axi_register_bank.sv|
+Z18 !s90 -sv|-work|work_modular|rtl\axi_register_bank.sv|tb\tb_axi_register_bank\tb_top.sv|
+!i113 1
+R9
+R10
+Yaxi_register_bank_tb_if
+R1
+R16
+!i10b 1
+!s100 ]k6N1Wl0lKcbNiGPbbSgB3
+R3
+I>C6ld]iTMOXQO_5FeThkm3
+R4
+S1
+R0
+w1784860403
+8tb\tb_axi_register_bank\tb_if.sv
+Ftb\tb_axi_register_bank\tb_if.sv
+!i122 5
+R11
+R5
+r1
+!s85 0
+31
+R17
+Z19 !s107 tb\tb_axi_register_bank\tb_environment.sv|tb\tb_axi_register_bank\tb_random.sv|tb\tb_axi_register_bank\tb_directed.sv|tb\tb_axi_register_bank\tb_monitor.sv|tb\tb_axi_register_bank\tb_driver.sv|tb\tb_axi_register_bank\tb_generator.sv|tb\tb_axi_register_bank\tb_coverage.sv|tb\tb_axi_register_bank\tb_scoreboard.sv|tb\tb_axi_register_bank\tb_transaction.sv|tb\tb_axi_register_bank\tb_pkg.sv|tb\tb_axi_register_bank\tb_if.sv|tb\tb_axi_register_bank\tb_top.sv|rtl\axi_register_bank.sv|
+R18
+!i113 1
+R9
+R10
+Xaxi_register_bank_tb_pkg
+!s115 axi_register_bank_tb_if
+R1
+R16
+!i10b 1
+!s100 Rodao@hhjSkJc7IWZ:aiA3
+R3
+I]bS<f^Bgm?M<M@;bRh2cA2
+V]bS<f^Bgm?M<M@;bRh2cA2
+S1
+R0
+w1784860567
+Ftb\tb_axi_register_bank\tb_pkg.sv
+Ftb\tb_axi_register_bank\tb_transaction.sv
+Ftb\tb_axi_register_bank\tb_scoreboard.sv
+Ftb\tb_axi_register_bank\tb_coverage.sv
+Ftb\tb_axi_register_bank\tb_generator.sv
+Ftb\tb_axi_register_bank\tb_driver.sv
+Ftb\tb_axi_register_bank\tb_monitor.sv
+Ftb\tb_axi_register_bank\tb_directed.sv
+Ftb\tb_axi_register_bank\tb_random.sv
+Ftb\tb_axi_register_bank\tb_environment.sv
+!i122 5
+R11
+R5
+r1
+!s85 0
+31
+R17
+R19
+R18
+!i113 1
+R9
+R10
+vtb_avalon_axi4lite_bridge
+R1
+DXx4 work 20 avalon_bridge_tb_pkg 0 22 8l7G_O5W;BHOlW;<n4W0N3
+R2
+!i10b 1
+!s100 YRI`Khfeb1Z]4c6Wan5R>1
+R3
+IAXCT5dY[zc6mBKiP`[k7J0
+R4
+S1
+R0
+w1784860081
+8tb\tb_avalon_axi4lite_bridge\tb_top.sv
+Ftb\tb_avalon_axi4lite_bridge\tb_top.sv
+!i122 3
+L0 6 49
+R5
+r1
+!s85 0
+31
+R6
+R7
+R8
+!i113 1
+R9
+R10
+vtb_axi4lite_slave
+R1
+DXx4 work 21 axi4lite_slave_tb_pkg 0 22 :1;[0UWZ1M@2IC3[_FYzd2
+R12
+!i10b 1
+!s100 SXVBImUgc0l^`lDUMi9D92
+R3
+IkUz_]Ynn4f>oInc_3QC[W0
+R4
+S1
+R0
+w1784860275
+8tb\tb_axi4lite_slave\tb_top.sv
+Ftb\tb_axi4lite_slave\tb_top.sv
+!i122 4
+L0 6 47
+R5
+r1
+!s85 0
+31
+R13
+R14
+R15
+!i113 1
+R9
+R10
+vtb_axi_register_bank
+R1
+DXx4 work 24 axi_register_bank_tb_pkg 0 22 ]bS<f^Bgm?M<M@;bRh2cA2
+R16
+!i10b 1
+!s100 8`]lP`NP8VS09jLAXdAb]2
+R3
+I:]Sk6C[V1hRi6eK]Z@j6h2
+R4
+S1
+R0
+w1784860459
+8tb\tb_axi_register_bank\tb_top.sv
+Ftb\tb_axi_register_bank\tb_top.sv
+!i122 5
+L0 6 37
+R5
+r1
+!s85 0
+31
+R17
+R19
+R18
+!i113 1
+R9
+R10

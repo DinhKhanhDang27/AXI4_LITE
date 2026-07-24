@@ -1,0 +1,389 @@
+Time resolution is 1 ps
+PASS: reset outputs
+PASS: write AW/W same cycle waitrequest busy
+PASS: write AW/W same cycle AW stable
+PASS: write AW/W same cycle W stable
+PASS: write AW/W same cycle BREADY before response
+PASS: write AW/W same cycle idle after response
+PASS: write AW before W waitrequest busy
+PASS: write AW before W AW stable
+PASS: write AW before W W stable
+PASS: write AW before W BREADY before response
+PASS: write AW before W idle after response
+PASS: W before AW keeps AWVALID
+PASS: read with delays AR stable
+PASS: read with delays RREADY waiting
+PASS: read with delays read data valid pulse
+PASS: read with delays read data valid one cycle
+PASS: simultaneous read/write chooses write
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+PASS: random Avalon read AR stable
+PASS: random Avalon read RREADY waiting
+PASS: random Avalon read read data valid pulse
+PASS: random Avalon read read data valid one cycle
+PASS: random Avalon write waitrequest busy
+PASS: random Avalon write AW stable
+PASS: random Avalon write W stable
+PASS: random Avalon write BREADY before response
+PASS: random Avalon write idle after response
+tb_avalon_axi4lite_bridge PASSED
+$finish called at time : 8865 ns : File "D:/INTERN/NghienCuu_AXI_LITE/tb/tb_avalon_axi4lite_bridge.sv" Line 257

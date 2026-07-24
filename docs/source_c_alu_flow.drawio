@@ -1,0 +1,77 @@
+<mxGraphModel dx="1554" dy="641" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
+  <root>
+    <mxCell id="0" />
+    <mxCell id="1" parent="0" />
+    <mxCell id="s_start" parent="1" style="ellipse;whiteSpace=wrap;html=1;aspect=fixed;fillColor=#d5e8d4;strokeColor=#82b366;fontStyle=1;" value="&lt;font style=&quot;font-size: 14px;&quot;&gt;main()&lt;/font&gt;" vertex="1">
+      <mxGeometry height="60" width="120" x="490" y="80" as="geometry" />
+    </mxCell>
+    <mxCell id="s_print" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;b&gt;&lt;font style=&quot;font-size: 18px;&quot;&gt;Print title and ALU base address&lt;br&gt;&lt;/font&gt;&lt;/b&gt;&lt;i&gt;ALU_AXI4_LITE_0_BASE = 0x11100&lt;/i&gt;" vertex="1">
+      <mxGeometry height="80" width="360" x="370" y="165" as="geometry" />
+    </mxCell>
+    <mxCell id="s_cases" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;fontStyle=1;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;Run 5 test_case&amp;nbsp;&lt;br&gt;&lt;/font&gt;ADD, SUB, MUL, DIV, DIV_BY_ZERO" vertex="1">
+      <mxGeometry height="80" width="360" x="370" y="270" as="geometry" />
+    </mxCell>
+    <mxCell id="s_init" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;test_case(name, a, b, opcode, expected, expect_error)&lt;br&gt;result = 0, status = 0&lt;/font&gt;" vertex="1">
+      <mxGeometry height="80" width="360" x="370" y="380" as="geometry" />
+    </mxCell>
+    <mxCell id="s_run" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#f8cecc;strokeColor=#b85450;fontStyle=1;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;rc = alu_run(a, b, opcode, &amp;amp;result, &amp;amp;status)&lt;/font&gt;" vertex="1">
+      <mxGeometry height="80" width="360" x="370" y="490" as="geometry" />
+    </mxCell>
+    <mxCell id="s_error_dec" parent="1" style="rhombus;whiteSpace=wrap;html=1;fillColor=#fff2cc;strokeColor=#d6b656;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;expect_error&amp;nbsp;&lt;/font&gt;" vertex="1">
+      <mxGeometry height="120" width="120" x="490" y="600" as="geometry" />
+    </mxCell>
+    <mxCell id="s_check_err" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#ffe6cc;strokeColor=#d79b00;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;PASS if&lt;br&gt;rc == -1 and ERROR bit set&lt;/font&gt;" vertex="1">
+      <mxGeometry height="80" width="360" x="720" y="620" as="geometry" />
+    </mxCell>
+    <mxCell id="s_check_ok" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#d5e8d4;strokeColor=#82b366;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;PASS if&lt;br&gt;rc == 0 and result == expected&lt;/font&gt;" vertex="1">
+      <mxGeometry height="80" width="360" x="20" y="620" as="geometry" />
+    </mxCell>
+    <mxCell id="s_printf" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#dae8fc;strokeColor=#6c8ebf;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;printf result line&lt;br&gt;name, A, B, result, expected, status, PASS/FAIL&lt;/font&gt;" vertex="1">
+      <mxGeometry height="80" width="360" x="370" y="750" as="geometry" />
+    </mxCell>
+    <mxCell id="e1" edge="1" parent="1" source="s_start" style="endArrow=block;html=1;rounded=0;" target="s_print">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e2" edge="1" parent="1" source="s_print" style="endArrow=block;html=1;rounded=0;" target="s_cases">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e3" edge="1" parent="1" source="s_cases" style="endArrow=block;html=1;rounded=0;" target="s_init">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e4" edge="1" parent="1" source="s_init" style="endArrow=block;html=1;rounded=0;" target="s_run">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e5" edge="1" parent="1" source="s_run" style="endArrow=block;html=1;rounded=0;" target="s_error_dec">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e6" edge="1" parent="1" source="s_error_dec" style="endArrow=block;html=1;rounded=0;" target="s_check_err" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;yes&lt;/font&gt;">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e7" edge="1" parent="1" source="s_error_dec" style="endArrow=block;html=1;rounded=0;" target="s_check_ok" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;no&lt;/font&gt;">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e8" edge="1" parent="1" source="s_check_err" style="endArrow=block;html=1;rounded=0;" target="s_printf">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="e9" edge="1" parent="1" source="s_check_ok" style="endArrow=block;html=1;rounded=0;" target="s_printf">
+      <mxGeometry relative="1" as="geometry" />
+    </mxCell>
+    <mxCell id="s_done" parent="1" style="rounded=1;whiteSpace=wrap;html=1;fillColor=#e1d5e7;strokeColor=#9673a6;" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;After all cases: print Done&lt;br&gt;then while(1) keeps CPU alive&lt;/font&gt;" vertex="1">
+      <mxGeometry height="80" width="360" x="770" y="750" as="geometry" />
+    </mxCell>
+    <mxCell id="e10" edge="1" parent="1" source="s_printf" style="endArrow=block;html=1;rounded=1;" target="s_cases" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;loop cases&lt;/font&gt;">
+      <mxGeometry relative="1" x="0.4468" y="20" as="geometry">
+        <mxPoint as="offset" />
+        <Array as="points">
+          <mxPoint x="70" y="790" />
+          <mxPoint x="70" y="310" />
+        </Array>
+      </mxGeometry>
+    </mxCell>
+    <mxCell id="e11" edge="1" parent="1" source="s_printf" style="endArrow=block;html=1;rounded=0;" target="s_done" value="&lt;font style=&quot;font-size: 18px;&quot;&gt;after last case&lt;/font&gt;">
+      <mxGeometry relative="1" x="0.04" y="40" as="geometry">
+        <mxPoint as="offset" />
+      </mxGeometry>
+    </mxCell>
+  </root>
+</mxGraphModel>

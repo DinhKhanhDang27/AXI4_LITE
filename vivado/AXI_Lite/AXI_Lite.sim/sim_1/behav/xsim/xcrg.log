@@ -1,0 +1,33 @@
+
+ Options Set are : 
+
+   Command Line               : xcrg -cc_dir . -cc_db tb_axi_register_bank -cc_report D:/INTERN/NghienCuu_AXI_LITE/vivado/coverage_html/tb_axi_register_bank
+   Report Format              : html
+   Log File                   : xcrg.log
+   Code Coverage DB Path      : tb_axi_register_bank
+   Code Coverage Dir Path     : .
+   Code Coverage Report Path  : D:/INTERN/NghienCuu_AXI_LITE/vivado/coverage_html/tb_axi_register_bank
+
+                  Code Coverage Report 
+
+ INFO-RESTORE : Code Coverage Database found at ./xsim.codeCov/tb_axi_register_bank/xsim.CCInfo
+
+ INFO-RESTORE : Code Coverage Info Restored Succesfull
+
+ XILINX_VIVADO derived is              : C:/Xilinx/Vivado/2023.1
+
+ INFO : Destination directory D:/INTERN/NghienCuu_AXI_LITE/vivado/coverage_html/tb_axi_register_bank/cssCodeCov is being overwritten
+ INFO : Destination directory D:/INTERN/NghienCuu_AXI_LITE/vivado/coverage_html/tb_axi_register_bank/jsCodeCov is being overwritten
+ Generating Code Coverage Report 
+
+                      HTML Report 
+
+  Code Coverage HTML Report dir : D:/INTERN/NghienCuu_AXI_LITE/vivado/coverage_html/tb_axi_register_bank
+
+  Line Coverage Score 98.9691
+  Branch Coverage Score 94.8718
+  Condition Coverage Score 7.69231
+  Toggle Coverage Score 40.5
+
+  Code Coverage Report Generation done 
+

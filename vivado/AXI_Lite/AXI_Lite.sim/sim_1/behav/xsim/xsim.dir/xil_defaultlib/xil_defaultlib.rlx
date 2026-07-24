@@ -2,6 +2,10 @@
 2020.2
 May  7 2023
 15:24:31
+D:/INTERN/NghienCuu_AXI_LITE/rtl/avalon_axi4lite_bridge.sv,1784112070,systemVerilog,,D:/INTERN/NghienCuu_AXI_LITE/tb/tb_avalon_axi4lite_bridge.sv,,avalon_axi4lite_bridge,,uvm,,,,,,
+D:/INTERN/NghienCuu_AXI_LITE/rtl/axi4lite_slave.sv,1784215497,systemVerilog,,D:/INTERN/NghienCuu_AXI_LITE/tb/tb_axi4lite_slave.sv,,axi4lite_slave,,uvm,,,,,,
 D:/INTERN/NghienCuu_AXI_LITE/rtl/axi_register_bank.sv,1784265771,systemVerilog,,D:/INTERN/NghienCuu_AXI_LITE/tb/tb_axi_register_bank.sv,,axi_register_bank,,uvm,,,,,,
-D:/INTERN/NghienCuu_AXI_LITE/tb/tb_axi_register_bank.sv,1784269236,systemVerilog,,,,tb_axi_register_bank,,uvm,,,,,,
+D:/INTERN/NghienCuu_AXI_LITE/tb/tb_avalon_axi4lite_bridge.sv,1784300876,systemVerilog,,,,tb_avalon_axi4lite_bridge,,uvm,,,,,,
+D:/INTERN/NghienCuu_AXI_LITE/tb/tb_axi4lite_slave.sv,1784300864,systemVerilog,,,,tb_axi4lite_slave,,uvm,,,,,,
+D:/INTERN/NghienCuu_AXI_LITE/tb/tb_axi_register_bank.sv,1784300851,systemVerilog,,,,tb_axi_register_bank,,uvm,,,,,,
 D:/INTERN/NghienCuu_AXI_LITE/vivado/AXI_Lite/AXI_Lite.sim/sim_1/behav/xsim/glbl.v,1683266558,verilog,,,,glbl,,uvm,,,,,,

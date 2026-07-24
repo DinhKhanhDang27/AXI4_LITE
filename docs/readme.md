@@ -23,6 +23,7 @@ Các case hiện đã khớp với testbench:
 
 - Write `CTRL = 0x1` khi idle, tạo `start_pulse` đúng 1 cycle và set status busy.
 - Write `CTRL = 0x1` khi busy, không tạo start mới.
+
 - Core done không error: status đọc ra `0x2`, result được latch.
 - Write `CTRL = 0x0`, không tạo start.
 - Start lại sau done được chấp nhận.

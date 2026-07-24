@@ -10,6 +10,7 @@ module avalon_axi4lite_bridge #(
     input  logic                     avs_write,
     input  logic [DATA_WIDTH-1:0]    avs_writedata,
     input  logic [(DATA_WIDTH/8)-1:0] avs_byteenable,
+
     output logic [DATA_WIDTH-1:0]    avs_readdata,
     output logic                     avs_waitrequest,
     output logic                     avs_readdatavalid,

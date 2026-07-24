@@ -1,0 +1,1 @@
+--incr --debug "typical" --relax --mt "2" -cc_db "tb_axi_register_bank" -cc_dir "." -cc_libs -cc_celldefines -cc_type "sbct" -L "xil_defaultlib" -L "uvm" -L "unisims_ver" -L "unimacro_ver" -L "secureip" --snapshot "tb_avalon_axi4lite_bridge_behav" "xil_defaultlib.tb_avalon_axi4lite_bridge" "xil_defaultlib.glbl" -log "elaborate.log" 

@@ -33,6 +33,7 @@ module tb_avalon_axi4lite_bridge;
     logic m_axi_rready;
 
     int errors;
+    int unsigned seed;
 
     avalon_axi4lite_bridge #(
         .ADDR_WIDTH(ADDR_WIDTH),
@@ -41,6 +42,11 @@ module tb_avalon_axi4lite_bridge;
 
     initial clk = 1'b0;
     always #5 clk = ~clk;
+
+    function automatic int unsigned rand32();
+        seed = (seed * 32'd1664525) + 32'd1013904223;
+        return seed;
+    endfunction
 
     task automatic check(input string name, input bit ok);
         if (!ok) begin
@@ -180,8 +186,36 @@ module tb_avalon_axi4lite_bridge;
         check({name, " read data valid one cycle"}, !avs_readdatavalid);
     endtask
 
+    task automatic random_bridge_tests(input int iterations);
+        logic [ADDR_WIDTH-1:0] addr;
+        logic [DATA_WIDTH-1:0] data;
+        logic [(DATA_WIDTH/8)-1:0] be;
+        int aw_delay;
+        int w_delay;
+        int resp_delay;
+
+        for (int i = 0; i < iterations; i++) begin
+            addr = rand32();
+            data = rand32();
+            be = rand32();
+            if (be == 4'b0000) begin
+                be = 4'b0001 << (rand32() % 4);
+            end
+            aw_delay = rand32() % 5;
+            w_delay = rand32() % 5;
+            resp_delay = rand32() % 5;
+
+            if ((rand32() % 3) == 0) begin
+                avalon_read(addr, data, aw_delay, resp_delay, "random Avalon read");
+            end else begin
+                avalon_write(addr, data, be, aw_delay, w_delay, resp_delay, "random Avalon write");
+            end
+        end
+    endtask
+
     initial begin
         errors = 0;
+        seed = 32'hB41D_6E00;
         reset_dut();
 
         check("reset outputs", !avs_waitrequest && !avs_readdatavalid && !m_axi_awvalid && !m_axi_wvalid && !m_axi_arvalid);
@@ -215,6 +249,8 @@ module tb_avalon_axi4lite_bridge;
         m_axi_bvalid = 1'b0;
         m_axi_bresp = 2'b00;
         @(posedge clk);
+
+        random_bridge_tests(80);
 
         if (errors == 0) begin
             $display("tb_avalon_axi4lite_bridge PASSED");

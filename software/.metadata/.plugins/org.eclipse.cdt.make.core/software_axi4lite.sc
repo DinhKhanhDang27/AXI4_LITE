@@ -4,6 +4,9 @@
 <scannerInfo id="org.eclipse.cdt.make.core.discoveredScannerInfo">
 <instance id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1994538643;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1994538643.;cdt.managedbuild.tool.gnu.cpp.compiler.cygwin.base.1333222308;cdt.managedbuild.tool.gnu.cpp.compiler.input.cygwin.1824895092">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
+<includePath path="D:/INTERN/NghienCuu_AXI_LITE/quartus/software/software_axi4lite_bsp/HAL/inc"/>
+<includePath path="D:/INTERN/NghienCuu_AXI_LITE/quartus/software/software_axi4lite_bsp/"/>
+<includePath path="D:/INTERN/NghienCuu_AXI_LITE/quartus/software/software_axi4lite_bsp/drivers/inc"/>
 <includePath path="C:\altera\13.0sp1\quartus\bin\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include\c++"/>
 <includePath path="C:\altera\13.0sp1\quartus\bin\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include\c++\i686-pc-cygwin"/>
 <includePath path="C:\altera\13.0sp1\quartus\bin\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include\c++\backward"/>
@@ -221,10 +224,19 @@
 <definedSymbol symbol="unix=1"/>
 <definedSymbol symbol="__unix__=1"/>
 <definedSymbol symbol="__unix=1"/>
+<definedSymbol symbol="SYSTEM_BUS_WIDTH=32"/>
+<definedSymbol symbol="__hal__=1"/>
+<definedSymbol symbol="ALT_NO_INSTRUCTION_EMULATION=1"/>
+<definedSymbol symbol="ALT_USE_SMALL_DRIVERS=1"/>
+<definedSymbol symbol="SMALL_C_LIB=1"/>
+<definedSymbol symbol="ALT_SINGLE_THREADED=1"/>
 </collector>
 </instance>
 <instance id="preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1994538643;preference.org.eclipse.cdt.managedbuilder.core.configurationDataProvider.1994538643.;cdt.managedbuild.tool.gnu.c.compiler.cygwin.base.516660435;cdt.managedbuild.tool.gnu.c.compiler.input.cygwin.1687731123">
 <collector id="org.eclipse.cdt.make.core.PerProjectSICollector">
+<includePath path="D:/INTERN/NghienCuu_AXI_LITE/quartus/software/software_axi4lite_bsp/HAL/inc"/>
+<includePath path="D:/INTERN/NghienCuu_AXI_LITE/quartus/software/software_axi4lite_bsp/"/>
+<includePath path="D:/INTERN/NghienCuu_AXI_LITE/quartus/software/software_axi4lite_bsp/drivers/inc"/>
 <includePath path="C:\altera\13.0sp1\quartus\bin\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include"/>
 <includePath path="C:\altera\13.0sp1\quartus\bin\cygwin\lib\gcc\i686-pc-cygwin\4.5.3\include-fixed"/>
 <includePath path="C:\altera\13.0sp1\quartus\bin\cygwin\usr\include"/>
@@ -432,6 +444,12 @@
 <definedSymbol symbol="unix=1"/>
 <definedSymbol symbol="__unix__=1"/>
 <definedSymbol symbol="__unix=1"/>
+<definedSymbol symbol="SYSTEM_BUS_WIDTH=32"/>
+<definedSymbol symbol="__hal__=1"/>
+<definedSymbol symbol="ALT_NO_INSTRUCTION_EMULATION=1"/>
+<definedSymbol symbol="ALT_USE_SMALL_DRIVERS=1"/>
+<definedSymbol symbol="SMALL_C_LIB=1"/>
+<definedSymbol symbol="ALT_SINGLE_THREADED=1"/>
 </collector>
 </instance>
 </scannerInfo>

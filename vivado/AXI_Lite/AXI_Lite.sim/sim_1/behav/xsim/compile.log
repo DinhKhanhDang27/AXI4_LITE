@@ -1,6 +1,4 @@
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/INTERN/NghienCuu_AXI_LITE/rtl/axi_register_bank.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module axi_register_bank
-INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/INTERN/NghienCuu_AXI_LITE/tb/tb_axi_register_bank.sv" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module tb_axi_register_bank
-INFO: [VRFC 10-2263] Analyzing Verilog file "D:/INTERN/NghienCuu_AXI_LITE/vivado/AXI_Lite/AXI_Lite.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
-INFO: [VRFC 10-311] analyzing module glbl
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/INTERN/NghienCuu_AXI_LITE/rtl/avalon_axi4lite_bridge.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module avalon_axi4lite_bridge
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "D:/INTERN/NghienCuu_AXI_LITE/tb/tb_avalon_axi4lite_bridge.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module tb_avalon_axi4lite_bridge
